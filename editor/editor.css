@@ -1,0 +1,163 @@
+body {
+    background-color: rgb(52 , 52, 52);
+}
+
+#editor-grid {
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+    grid-template-rows: auto auto 1fr;
+    gap: 3px;
+    text-align: center;
+    font-family: 'Courier New';
+}
+
+#editor-grid > * {
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: whitesmoke;
+}
+
+.canvas {
+    padding: 5px;
+    grid-column: 2 / span 2;
+    grid-row: 2 / span 2;
+    overflow: auto;
+}
+
+.canvas > table, .canvas td {
+    border: 1px solid whitesmoke;
+    border-collapse: collapse;
+}
+
+.canvas > table {
+    user-select: none;
+    margin: 0;
+    background-color: white;
+}
+
+.canvas td {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    cursor: crosshair;
+}
+
+.canvas td:hover {
+    background-color: whitesmoke;
+}
+
+.canvas td > div {
+    width: 0.55em;
+    height: 0.8em;
+}
+
+.palette {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5px 5px 10px;
+}
+
+.palette > div {
+    width: 1em;
+    height: 1em;
+    cursor: pointer;
+    text-align: center;
+    user-select: none;
+}
+
+.palette > div:hover {
+    font-weight: bold;
+}
+
+.selected-char, .selected-instrument {
+    font-size: 40px;
+    height: 1em;
+    width: 1em;
+}
+
+.selected-char {
+    padding: 2px 6px 10px;
+}
+
+.selected-instrument {
+    padding: 2px 6px 10px;
+}
+
+.instruments, .operations {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    font-size: 30px;
+    align-self: stretch;
+}
+
+.instruments {
+    padding: 0px 5px 5px;
+}
+
+.operations {
+    padding: 10px 5px;
+}
+
+.instruments > div, .operations > div {
+    user-select: none;
+    cursor: pointer;
+}
+
+.instruments > div:hover, .operations > div:hover {
+    font-weight: bold;
+}
+
+.tooltip {
+    position: relative;
+}
+
+.tooltip > .tooltip-text {
+    font-size: 12px;
+    visibility: hidden;
+    width: auto;
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 5px 10px;
+    position: absolute;
+    z-index: 1;
+    border-radius: 20px;
+    white-space: nowrap;
+    top: 0.5em;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.tooltip:hover .tooltip-text {
+    visibility: visible;
+}
+
+.animator-frames, .animator-operations {
+    display: flex;
+    grid-column: span 3;
+    padding: 5px 5px 0;
+    flex-wrap: wrap;
+}
+
+.animator-frames > *, .animator-operations > * {
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.animator-fps > input {
+    width: 40px;
+}
+
+.animator-fps {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+}
+
+.animator-frames > .selected-frame {
+    border: 2px solid red;
+    border-radius: 2px;
+}
+
+.animator-frames > .selected-frame:focus {
+    outline: none;
+}
