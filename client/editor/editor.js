@@ -1,6 +1,7 @@
 const IMAGE_CHECKPOINT_KEY = 'ascii-art-image-checkpoint';
 const ANIMATION_CHECKPOINT_KEY = 'ascii-art-animation-checkpoint';
 const ANIMATION_PLAYER_KEY = 'ascii-art-animation-player';
+const PLAYER_DIR = '../player/player.html'
 
 class AsciiImageEditor {
     root;
@@ -177,7 +178,7 @@ class AsciiAnimationEditor extends AsciiImageEditor {
         this.animationOperations.pushOption({ label: 'Play \u25B6', container: 'button'}, () => {
             this.frameManager._overrideFrame();
             localStorage.setItem(ANIMATION_PLAYER_KEY, this.getAnimationJson());
-            window.open('../player/player.html');
+            window.open(PLAYER_DIR);
         });
     }
 
