@@ -1,0 +1,3 @@
+SetEnv DATABASE_NAME "Name of the database."
+SetEnv DATABASE_USERNAME  "Username of a user in the database."
+SetEnv DATABASE_PASSWORD  "Password of the user."
