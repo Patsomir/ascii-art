@@ -34,6 +34,7 @@ function submitLogin(event) {
     login(username, password)
     .then(success => {
         resultContainer.textContent = 'Hello, ' + success.name;
+        location.reload();
     })
     .catch(failure => {
         resultContainer.innerHTML = '';
