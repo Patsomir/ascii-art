@@ -1,6 +1,6 @@
 const PATH = '/registration.php';
 
-function register(event) {
+function submitRegister(event) {
     event.preventDefault();
     const resultContainer = document.getElementById('register-result');
     resultContainer.innerHTML = 'Loading...';
@@ -23,7 +23,7 @@ function register(event) {
     });
 }
 
-function login(event) {
+function submitLogin(event) {
     event.preventDefault();
     const resultContainer = document.getElementById('login-result');
     resultContainer.innerHTML = 'Loading...';
@@ -31,7 +31,7 @@ function login(event) {
     const username = document.getElementById('login-username').value;
     const password = document.getElementById('login-password').value;
 
-    auth(username, password)
+    login(username, password)
     .then(success => {
         resultContainer.textContent = 'Hello, ' + success.name;
     })
@@ -43,7 +43,7 @@ function login(event) {
     });
 }
 
-function test(event) {
+function submitTest(event) {
     event.preventDefault();
     const resultContainer = document.getElementById('test-result');
     resultContainer.innerHTML = 'Loading...';
@@ -60,16 +60,16 @@ function test(event) {
     });
 }
 
-function logout(event) {
+function submitLogout(event) {
     event.preventDefault();
-    get('/logout.php')
+    logout()
     .then(success => console.log(success.result))
     .catch(failure => console.error(failure));
 }
 
 window.addEventListener('load', () => {
-    document.getElementById('register-button').addEventListener('click', register);
-    document.getElementById('login-button').addEventListener('click', login);
-    document.getElementById('test-button').addEventListener('click', test);
-    document.getElementById('logout-button').addEventListener('click', logout);
+    document.getElementById('register-button').addEventListener('click', submitRegister);
+    document.getElementById('login-button').addEventListener('click', submitLogin);
+    document.getElementById('test-button').addEventListener('click', submitTest);
+    document.getElementById('logout-button').addEventListener('click', submitLogout);
 });

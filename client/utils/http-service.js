@@ -32,10 +32,3 @@ function postJson(path, data) {
         JSON.stringify(data),
     );
 }
-
-function auth(username, password) {
-    return sendRequest(
-        `/login.php?username=${username}&password=${password}`,
-        'POST',
-    );
-}
