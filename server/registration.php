@@ -1,20 +1,20 @@
 <?php
     include 'user_service.php';
+    include 'json.php';
 
     if($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $requestData = json_decode(file_get_contents('php://input'));
+        $requestData = recv();
         $responseData = array();
+        $status = 200;
 
         $result = $userService->register($requestData->name, $requestData->username, $requestData->password);
         if($result === 'Success') {
             $responseData['result'] = 'Successful registration';
-            http_response_code(200);
         } else {
             $responseData['errors'] = $result;
-            http_response_code(400);
+            $status = 400;
         }
 
-        header('Content-Type: application/json;charset=utf-8');
-        echo json_encode($responseData);
+        send($responseData, $status);
     }
 ?>
