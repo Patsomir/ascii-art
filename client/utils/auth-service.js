@@ -25,7 +25,7 @@ function logout() {
 }
 
 function getCurrentUser() {
-    return localStorage.getItem(LOGGED_USER_KEY);
+    return JSON.parse(localStorage.getItem(LOGGED_USER_KEY));
 }
 
 function setCurrentUser(user) {

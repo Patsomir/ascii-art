@@ -68,6 +68,7 @@ function submitLogout(event) {
 }
 
 window.addEventListener('load', () => {
+    buildDefaultToolbar();
     document.getElementById('register-button').addEventListener('click', submitRegister);
     document.getElementById('login-button').addEventListener('click', submitLogin);
     document.getElementById('test-button').addEventListener('click', submitTest);
