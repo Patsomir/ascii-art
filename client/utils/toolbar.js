@@ -1,5 +1,5 @@
 const DEFAULT_TOOLBAR_ID = 'toolbar';
-const LOGIN_FORM_PATH = '../login';
+const LOGIN_FORM_PATH = '/client/login';
 
 function getDefaultToolbarContainer() {
     return document.getElementById(DEFAULT_TOOLBAR_ID);

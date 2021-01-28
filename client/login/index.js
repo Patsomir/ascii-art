@@ -1,4 +1,5 @@
-const PATH = '/registration.php';
+const REGISTER_PATH = '/registration.php';
+const LOGIN_SUCCESS_PATH = '/client';
 
 function submitRegister(event) {
     event.preventDefault();
@@ -11,7 +12,7 @@ function submitRegister(event) {
         password: document.getElementById('register-password').value,
     }
 
-    postJson(PATH, data)
+    postJson(REGISTER_PATH, data)
     .then(success => {
         resultContainer.textContent = success.result;
     })
@@ -34,7 +35,7 @@ function submitLogin(event) {
     login(username, password)
     .then(success => {
         resultContainer.textContent = 'Hello, ' + success.name;
-        location.reload();
+        location.href = LOGIN_SUCCESS_PATH;
     })
     .catch(failure => {
         resultContainer.innerHTML = '';
