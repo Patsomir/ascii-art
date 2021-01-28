@@ -1,5 +1,5 @@
 <?php
-    include 'database.php';
+    include_once 'database.php';
     include 'validation.php';
 
     class UserService {
@@ -11,9 +11,16 @@
 
         public function register($name, $username, $password) {
             $errors = array();
-            pushIfNotNull($errors, validateMinLength($name, 1, 'Name'));
-            pushIfNotNull($errors, validateMinLength($username, 6, 'Username'));
-            pushIfNotNull($errors, validateMinLength($password, 6, 'Password'));
+
+            if(!pushIfError($errors, validateString($name, 'Name'))) {
+                pushIfError($errors, validateMinLength($name, 1, 'Name'));
+            }
+            if(!pushIfError($errors, validateString($username, 'Username'))) {
+                pushIfError($errors, validateMinLength($username, 6, 'Username'));
+            }
+            if(!pushIfError($errors, validateString($password, 'Password'))) {
+                pushIfError($errors, validateMinLength($password, 6, 'Password'));
+            }
 
             if(count($errors) > 0) {
                 return $errors;
@@ -33,6 +40,16 @@
                 }
                 return $errors;
             }
+        }
+
+        public function getUser($username) {
+            $query = $this->database->getQuery(
+                'SELECT *
+                FROM users
+                WHERE username = ?;'
+            );
+            $query->execute([$username]);
+            return $query->fetch(PDO::FETCH_ASSOC);
         }
     }
 

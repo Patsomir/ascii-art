@@ -11,9 +11,17 @@
         }
     }
 
-    function pushIfNotNull(&$arr, $value) {
+    function validateString($str, $displayName = 'Value') {
+        if(!is_string($str)) {
+            return "$displayName must be a string";
+        }
+    }
+
+    function pushIfError(&$arr, $value) {
         if(!is_null($value)) {
             array_push($arr, $value);
+            return true;
         }
+        return false;
     }
 ?>
