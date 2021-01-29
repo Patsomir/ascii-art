@@ -2,12 +2,12 @@ window.addEventListener('load', () => {
     const input = document.getElementById('upload-button')
 
     input.addEventListener('change', event => {
-        AsciiFromImage(event.target.files[0], { width: 150 })
+        asciiFromImage(event.target.files[0], { width: 150 })
         event.target.value = null;
     })
 })
 
-function AsciiFromImage(file, asciiDimensions) {
+function asciiFromImage(file, asciiDimensions) {
     const reader = new FileReader();
 
     reader.addEventListener("load", () => {
@@ -34,10 +34,10 @@ function AsciiFromImage(file, asciiDimensions) {
                 asciiHeight = Math.round(3 / 5 * asciiWidth * img.height / img.width);
             }
 
-            const ascii_art = genAscii(ctx, img.width, img.height, asciiWidth, asciiHeight)
+            const asciiArt = genAscii(ctx, img.width, img.height, asciiWidth, asciiHeight)
 
-            console.log(ascii_art)
-            return ascii_art
+            console.log(asciiArt)
+            return asciiArt
         })
 
         img.src = reader.result;
@@ -49,41 +49,41 @@ function AsciiFromImage(file, asciiDimensions) {
 }
 
 
-function genAscii(ctx, img_width, img_height, asciiWidth, asciiHeight) {
-    let ascii_art = "";
+function genAscii(ctx, imgWidth, imgHeight, asciiWidth, asciiHeight) {
+    let asciiArt = "";
 
-    const step_w = img_width / asciiWidth;
-    const step_h = img_height / asciiHeight;
+    const stepW = imgWidth / asciiWidth;
+    const stepH = imgHeight / asciiHeight;
 
     for (h = 0; h < asciiHeight; h++) {
         for (w = 0; w < asciiWidth; w++) {
-            const source_w = Math.floor(w * step_w);
-            const source_h = Math.floor(h * step_h);
+            const sourceW = Math.floor(w * stepW);
+            const sourceH = Math.floor(h * stepH);
 
-            let new_pixel = new Uint32Array([0, 0, 0, 0]);
+            let newPixel = new Uint32Array([0, 0, 0, 0]);
 
-            num_pixels = 0
-            for (sw = 0; sw < step_w; sw++) {
-                for (sh = 0; sh < step_h; sh++) {
-                    const pixel = ctx.getImageData(source_w + sw, source_h + sh, 1, 1).data
+            let numPixels = 0
+            for (sw = 0; sw < stepW; sw++) {
+                for (sh = 0; sh < stepH; sh++) {
+                    const pixel = ctx.getImageData(sourceW + sw, sourceH + sh, 1, 1).data
 
                     for (let i = 0; i < 4; i++) {
-                        new_pixel[i] += pixel[i]
+                        newPixel[i] += pixel[i]
                     }
-                    num_pixels++
+                    numPixels++
                 }
             }
             for (let i = 0; i < 4; i++) {
-                new_pixel[i] /= num_pixels
+                newPixel[i] /= numPixels
             }
 
-            ascii_art += mapColorToAscii(new_pixel[0], new_pixel[1], new_pixel[2]);
+            asciiArt += mapColorToAscii(newPixel[0], newPixel[1], newPixel[2]);
         }
 
-        ascii_art += '\n'
+        asciiArt += '\n'
     }
 
-    return ascii_art;
+    return asciiArt;
 }
 
 function mapColorToAscii(r, g, b) {
@@ -102,24 +102,24 @@ function mapColorToAscii(r, g, b) {
 }
 
 
-function drawPalette(number_colors, color_width, color_height) {
-    const step = 255 / number_colors;
+function drawPalette(numberColors, colorWidth, colorHeight) {
+    const step = 255 / numberColors;
 
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
-    canvas.width = (color_width + 3) * number_colors;
-    canvas.height = color_width;
+    canvas.width = (colorWidth + 3) * numberColors;
+    canvas.height = colorWidth;
 
-    for (let i = 0; i < number_colors; i++) {
-        let color_string = "rgb(";
-        color_string += Math.floor(i * step);
-        color_string += ",";
-        color_string += Math.floor(i * step);
-        color_string += ",";
-        color_string += Math.floor(i * step);
-        color_string += ")";
-        ctx.fillStyle = color_string;
-        ctx.fillRect(i * (color_width + 3), 0, color_width, color_height);
+    for (let i = 0; i < numberColors; i++) {
+        let colorString = "rgb(";
+        colorString += Math.floor(i * step);
+        colorString += ",";
+        colorString += Math.floor(i * step);
+        colorString += ",";
+        colorString += Math.floor(i * step);
+        colorString += ")";
+        ctx.fillStyle = colorString;
+        ctx.fillRect(i * (colorWidth + 3), 0, colorWidth, colorHeight);
     }
     document.body.appendChild(canvas)
 }
