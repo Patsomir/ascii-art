@@ -50,8 +50,7 @@ body {
 }
 
 .toolbar button:hover {
-    text-shadow: 0 0 20px black;
-    color: white;
+    color: rgb(100, 100, 100);
 }
 
 .toolbar > .logo {
@@ -62,7 +61,7 @@ body {
 }
 
 .toolbar > .button-container > .login-button {
-    font-size: 16px;
+    font-size: 20px;
 }
 
 .toolbar button:focus {

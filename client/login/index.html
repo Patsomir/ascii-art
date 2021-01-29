@@ -4,32 +4,36 @@
     <meta charset="utf-8" />
     <title>ASCII ART LOGIN</title>
     <link href="../utils/toolbar.css" rel="stylesheet">
+    <link href="index.css" rel="stylesheet">
     <script src="../utils/http-service.js"></script>
     <script src="../utils/auth-service.js"></script>
     <script src="../utils/toolbar.js"></script>
+    <script src="../utils/validation.js"></script>
     <script src="index.js"></script>
   </head>
   <body>
     <div id="toolbar"></div>
-    <h1>Login</h1>
-    <form>
-      <input id="login-username" placeholder="Username" />
-      <input id="login-password" type="password" placeholder="Password" />
-      <button id="login-button">Submit</button>
-    </form>
-    <p id="login-result"></p>
 
-    <h1>Register</h1>
-    <form>
-      <input id="register-name" placeholder="Name" />
-      <input id="register-username" placeholder="Username" />
-      <input id="register-password" type="password" placeholder="Password" />
-      <button id="register-button">Submit</button>
-    </form>
-    <p id="register-result"></p>
-
-    <button id="test-button">Test Session</button>
-    <button id="logout-button">Logout</button>
-    <p id="test-result"></p>
+    <div id="container">
+      <div id="options">
+        <h2 id="login-option">Login</h2>
+        <h2 id="register-option">Register</h2>
+      </div>
+    
+      <form id="login-form">
+        <input id="login-username" placeholder="Username"/>
+        <input id="login-password" type="password" placeholder="Password"/>
+        <button id="login-button">Submit</button>
+      </form>
+      <form id="register-form">
+        <input id="register-name" placeholder="Name" />
+        <input id="register-username" placeholder="Username" />
+        <input id="register-password" type="password" placeholder="Password" />
+        <input id="register-confirm-password" type="password" placeholder="Confirm Password" />
+        <button id="register-button">Submit</button>
+      </form>
+      
+      <div id="feedback"></div>
+    </div>
   </body>
 </html>
