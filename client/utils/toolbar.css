@@ -58,6 +58,7 @@ body {
     grid-row: 1 / span 2;
     grid-column: 1 / span 1;
     user-select: none;
+    cursor: pointer;
 }
 
 .toolbar > .button-container > .login-button {

@@ -1,16 +1,18 @@
 const DEFAULT_TOOLBAR_ID = 'toolbar';
-const LOGIN_FORM_PATH = '/client/login';
+const DEFAULT_LOGIN_PATH = '/client/login';
+const DEFAULT_LOGO_PATH = '/client';
 
 function getDefaultToolbarContainer() {
     return document.getElementById(DEFAULT_TOOLBAR_ID);
 }
 
 function buildDefaultToolbar() {
-    return new Toolbar(getDefaultToolbarContainer(), LOGIN_FORM_PATH);
+    return new Toolbar(getDefaultToolbarContainer());
 }
 
 class Toolbar {
     root;
+    logoPath;
     loginPath;
     buttonContainer;
     buttonLabel;
@@ -19,13 +21,15 @@ class Toolbar {
     nameContainer;
     logoContainer;
 
-    constructor(root, loginPath) {
+    constructor(root, logoPath = DEFAULT_LOGO_PATH, loginPath = DEFAULT_LOGIN_PATH) {
         this.root = root;
+        this.logoPath = logoPath;
         this.loginPath = loginPath;
 
         const user = getCurrentUser();
         this.logoContainer = document.createElement('h1');
         this.logoContainer.textContent = 'Ascii Art';
+        this.logoContainer.addEventListener('click', () => { location.href = this.logoPath; });
         this.nameContainer = document.createElement('h6');
         this.buttonContainer = document.createElement('div');
         this.buttonLabel = document.createElement('h6');
@@ -48,9 +52,7 @@ class Toolbar {
             this.loginButton = document.createElement('button');
             this.buttonContainer.appendChild(this.loginButton);
             this.loginButton.textContent = 'Login';
-            this.loginButton.addEventListener('click', () => {
-                location.href = this.loginPath;
-            });
+            this.loginButton.addEventListener('click', () => { location.href = this.loginPath; });
         }
 
         this._addStyleClasses();
