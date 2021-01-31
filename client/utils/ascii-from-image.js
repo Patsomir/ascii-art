@@ -1,51 +1,46 @@
-window.addEventListener('load', () => {
-    const input = document.getElementById('upload-button')
-
-    input.addEventListener('change', event => {
-        asciiFromImage(event.target.files[0], { width: 150 })
-        event.target.value = null;
-    })
-})
-
 function asciiFromImage(file, asciiDimensions) {
-    const reader = new FileReader();
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
 
-    reader.addEventListener("load", () => {
-        var img = new Image();
+        reader.addEventListener("load", () => {
+            var img = new Image();
 
-        img.addEventListener("load", () => {
-            let canvas = document.createElement('canvas');
-            canvas.width = img.width;
-            canvas.height = img.height;
+            img.addEventListener("load", () => {
+                let canvas = document.createElement('canvas');
+                canvas.width = img.width;
+                canvas.height = img.height;
 
-            let ctx = canvas.getContext('2d')
-            ctx.drawImage(img, 0, 0, img.width, img.height);
+                let ctx = canvas.getContext('2d')
+                ctx.drawImage(img, 0, 0, img.width, img.height);
 
-            let asciiWidth = asciiDimensions.width;
-            let asciiHeight = asciiDimensions.height;
+                let asciiWidth = asciiDimensions.width;
+                let asciiHeight = asciiDimensions.height;
 
-            if (!asciiWidth && !asciiHeight) {
-                throw Error('At least one dimension is required');
-            }
-            if (!asciiWidth) {
-                asciiWidth = Math.round(5 / 3 * asciiHeight * img.width / img.height);
-            }
-            if (!asciiHeight) {
-                asciiHeight = Math.round(3 / 5 * asciiWidth * img.height / img.width);
-            }
+                if (!asciiWidth && !asciiHeight) {
+                    throw Error('At least one dimension is required');
+                }
+                if (!asciiWidth) {
+                    asciiWidth = Math.round(5 / 3 * asciiHeight * img.width / img.height);
+                }
+                if (!asciiHeight) {
+                    asciiHeight = Math.round(3 / 5 * asciiWidth * img.height / img.width);
+                }
 
-            const asciiArt = genAscii(ctx, img.width, img.height, asciiWidth, asciiHeight)
+                const asciiArt = genAscii(ctx, img.width, img.height, asciiWidth, asciiHeight)
 
-            console.log(asciiArt)
-            return asciiArt
-        })
+                console.log(asciiArt)
+                resolve(asciiArt);
+            })
 
-        img.src = reader.result;
-    }, false);
+            img.src = reader.result;
+        }, false);
 
-    if (file) {
-        reader.readAsDataURL(file)
-    }
+        if (file) {
+            reader.readAsDataURL(file);
+        } else {
+            reject(new Error('File failed to load'));
+        }
+    });
 }
 
 

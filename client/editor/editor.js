@@ -18,6 +18,7 @@ class AsciiImageEditor {
     instrumentSelector;
     operationSelector;
     fileManager;
+    imageFileManager;
 
     static DEFAULT_WIDTH = 80;
     static DEFAULT_HEIGHT = 40;
@@ -32,6 +33,8 @@ class AsciiImageEditor {
         this.instrumentSelector = new AsciiSelect(this.instrumentsDom);
         this.operationsSelector = new AsciiSelect(this.operationsDom);
         this.fileManager = new FileManager();
+        this.imageFileManager = new FileManager();
+        this.imageFileManager.input.accept = 'image/*';
 
         this.palette.onSelect = char => this.selectedCharDom.textContent = char;
         this.instrumentSelector.onSelect = char => this.selectedInstrumentDom.textContent = char;
@@ -78,6 +81,17 @@ class AsciiImageEditor {
                 .catch(() => console.error('Error occured while importing file'));
             }
             this.fileManager.openPrompt();
+        });
+        this.operationsSelector.pushOption({ label: '\uD83D\uDCE4', tooltip: 'Import from picture' }, () => {
+            this.imageFileManager.onSelect = file => {
+                asciiFromImage(file, { width: this.canvas.width, height: this.canvas.height })
+                .then(asciiArt => {
+                    this.canvas.clear();
+                    this.canvas.setTemplate(asciiArt);
+                })
+                .catch(err => console.error(err.message));
+            }
+            this.imageFileManager.openPrompt();
         });
         this.operationsSelector.pushOption({ label: '\u274C', tooltip: 'Delete' }, () => {
             localStorage.removeItem(IMAGE_CHECKPOINT_KEY);
