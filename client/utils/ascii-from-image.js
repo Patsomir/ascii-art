@@ -5,13 +5,13 @@ function asciiFromImage(file, asciiDimensions) {
 
         const errors = validateDimensions(asciiWidth, asciiHeight);
         if (errors) {
-            return reject(errors)
+            return reject(errors);
         }
 
         const reader = new FileReader();
 
         reader.addEventListener("load", () => {
-            var img = new Image();
+            let img = new Image();
 
             img.addEventListener("load", () => {
                 let canvas = document.createElement('canvas');
@@ -28,10 +28,7 @@ function asciiFromImage(file, asciiDimensions) {
                     asciiHeight = Math.round(3 / 5 * asciiWidth * img.height / img.width);
                 }
 
-                const asciiArt = genAscii(ctx, img.width, img.height, asciiWidth, asciiHeight)
-
-                console.log(asciiArt)
-                resolve(asciiArt);
+                resolve(genAscii(ctx, img.width, img.height, asciiWidth, asciiHeight));
             })
 
             img.src = reader.result;
@@ -72,34 +69,31 @@ function genAscii(ctx, imgWidth, imgHeight, asciiWidth, asciiHeight) {
     const stepW = imgWidth / asciiWidth;
     const stepH = imgHeight / asciiHeight;
 
-    for (h = 0; h < asciiHeight; h++) {
-        for (w = 0; w < asciiWidth; w++) {
+    for (let h = 0; h < asciiHeight; h++) {
+        for (let w = 0; w < asciiWidth; w++) {
             const sourceW = Math.floor(w * stepW);
             const sourceH = Math.floor(h * stepH);
 
             let newPixel = new Uint32Array([0, 0, 0, 0]);
 
-            let numPixels = 0
-            for (sw = 0; sw < stepW; sw++) {
-                for (sh = 0; sh < stepH; sh++) {
-                    const pixel = ctx.getImageData(sourceW + sw, sourceH + sh, 1, 1).data
+            let numPixels = 0;
+            for (let sW = 0; sW < stepW; sW++) {
+                for (let sH = 0; sH < stepH; sH++) {
+                    const pixel = ctx.getImageData(sourceW + sW, sourceH + sH, 1, 1).data;
 
                     for (let i = 0; i < 4; i++) {
-                        newPixel[i] += pixel[i]
+                        newPixel[i] += pixel[i];
                     }
-                    numPixels++
+                    numPixels++;
                 }
             }
             for (let i = 0; i < 4; i++) {
-                newPixel[i] /= numPixels
+                newPixel[i] /= numPixels;
             }
-
             asciiArt += mapColorToAscii(newPixel[0], newPixel[1], newPixel[2]);
         }
-
-        asciiArt += '\n'
+        asciiArt += '\n';
     }
-
     return asciiArt;
 }
 
@@ -119,24 +113,19 @@ function mapColorToAscii(r, g, b) {
 }
 
 
-function drawPalette(numberColors, colorWidth, colorHeight) {
+function drawPalette(numberColors, colorWidth = 50, colorHeight = 50) {
     const step = 255 / numberColors;
+    const betweenColors = 5;
 
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
-    canvas.width = (colorWidth + 3) * numberColors;
+    canvas.width = (colorWidth + betweenColors) * numberColors;
     canvas.height = colorWidth;
 
     for (let i = 0; i < numberColors; i++) {
-        let colorString = "rgb(";
-        colorString += Math.floor(i * step);
-        colorString += ",";
-        colorString += Math.floor(i * step);
-        colorString += ",";
-        colorString += Math.floor(i * step);
-        colorString += ")";
-        ctx.fillStyle = colorString;
-        ctx.fillRect(i * (colorWidth + 3), 0, colorWidth, colorHeight);
+        const color = Math.floor(i * step);
+        ctx.fillStyle = `rgb(${color},${color},${color})`;
+        ctx.fillRect(i * (colorWidth + betweenColors), 0, colorWidth, colorHeight);
     }
     document.body.appendChild(canvas)
 }
