@@ -21,6 +21,22 @@ class Validator {
         return true;
     }
 
+    validatePositive(num, displayName = 'Value') {
+        if (num <= 0) {
+            this.errors.push(`${displayName} must be positive`);
+            return false;
+        }
+        return true;
+    }
+
+    validateInteger(num, displayName = 'Value') {
+        if (!Number.isInteger(num)) {
+            this.errors.push(`${displayName} must be an integer`)
+            return false;
+        }
+        return true;
+    }
+
     validateEquals(left, right, leftDisplayName = 'Left Value', rightDisplayName = 'Left Value') {
         if(left !== right) {
             this.errors.push(`${leftDisplayName} and ${rightDisplayName} must be equal`);
@@ -31,5 +47,17 @@ class Validator {
 
     hasErrors() {
         return this.errors.length > 0;
+    }
+
+    getErrors() {
+        if(this.hasErrors()) {
+            let error_message = "";
+            this.errors.forEach(error => error_message += (error + '.\n'));
+
+            return new Error(error_message.slice(0, -2))
+        }
+        else {
+            return null;
+        }
     }
 }
