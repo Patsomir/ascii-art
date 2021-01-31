@@ -1,5 +1,13 @@
 function asciiFromImage(file, asciiDimensions) {
     return new Promise((resolve, reject) => {
+        let asciiWidth = asciiDimensions.width;
+        let asciiHeight = asciiDimensions.height;
+
+        const errors = validateDimensions(asciiWidth, asciiHeight);
+        if (errors) {
+            return reject(errors)
+        }
+
         const reader = new FileReader();
 
         reader.addEventListener("load", () => {
@@ -13,12 +21,6 @@ function asciiFromImage(file, asciiDimensions) {
                 let ctx = canvas.getContext('2d')
                 ctx.drawImage(img, 0, 0, img.width, img.height);
 
-                let asciiWidth = asciiDimensions.width;
-                let asciiHeight = asciiDimensions.height;
-
-                if (!asciiWidth && !asciiHeight) {
-                    throw Error('At least one dimension is required');
-                }
                 if (!asciiWidth) {
                     asciiWidth = Math.round(5 / 3 * asciiHeight * img.width / img.height);
                 }
@@ -41,6 +43,26 @@ function asciiFromImage(file, asciiDimensions) {
             reject(new Error('File failed to load'));
         }
     });
+}
+
+function validateDimensions(asciiWidth, asciiHeight){
+    if (!asciiWidth && !asciiHeight) {
+        return new Error('At least one dimension is required');
+    }
+
+    let validator = new Validator();
+
+    if(asciiWidth) {
+        validator.validatePositive(asciiWidth, "Width");
+        validator.validateInteger(asciiWidth, "Width");
+    }
+
+    if(asciiHeight){
+        validator.validatePositive(asciiHeight, "Height");
+        validator.validateInteger(asciiHeight, "Height");
+    }
+
+    return validator.getErrors();
 }
 
 
