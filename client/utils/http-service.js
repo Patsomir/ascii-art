@@ -1,7 +1,7 @@
-const SERVER_URL = 'http://localhost/server';
+import { config } from '../config.js';
 
-function sendRequest(path, method, headers, body) {
-    return fetch(SERVER_URL + path, {
+export function sendRequest(path, method, headers, body) {
+    return fetch(config.server_url + path, {
         method,
         headers,
         body,
@@ -20,11 +20,11 @@ function sendRequest(path, method, headers, body) {
     });
 }
 
-function get(path) {
+export function get(path) {
     return sendRequest(path, 'GET');
 }
 
-function postJson(path, data) {
+export function postJson(path, data) {
     return sendRequest(
         path,
         'POST',

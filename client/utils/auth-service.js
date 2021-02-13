@@ -1,8 +1,10 @@
+import { sendRequest } from './http-service.js';
+
 const LOGGED_USER_KEY = 'ascii-art-user';
 const LOGIN_PATH = '/login.php';
 const LOGOUT_PATH = '/logout.php';
 
-function login(username, password) {
+export function login(username, password) {
     return sendRequest(
         `${LOGIN_PATH}?username=${username}&password=${password}`,
         'POST',
@@ -13,7 +15,7 @@ function login(username, password) {
     });
 }
 
-function logout() {
+export function logout() {
     return sendRequest(
         `${LOGOUT_PATH}`,
         'POST',
@@ -24,11 +26,11 @@ function logout() {
     });
 }
 
-function getCurrentUser() {
+export function getCurrentUser() {
     return JSON.parse(localStorage.getItem(LOGGED_USER_KEY));
 }
 
-function setCurrentUser(user) {
+export function setCurrentUser(user) {
     const json = user ? JSON.stringify(user) : null;
     localStorage.setItem(LOGGED_USER_KEY, json);
 }

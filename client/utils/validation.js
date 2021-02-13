@@ -1,4 +1,4 @@
-class Validator {
+export class Validator {
     errors
 
     constructor() {

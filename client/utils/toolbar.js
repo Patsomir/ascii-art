@@ -1,12 +1,15 @@
+import { moveTo } from './navigation.js';
+import { logout, getCurrentUser } from './auth-service.js';
+
 const DEFAULT_TOOLBAR_ID = 'toolbar';
-const DEFAULT_LOGIN_PATH = '/client/login';
-const DEFAULT_LOGO_PATH = '/client';
+const DEFAULT_LOGIN_PATH = '/login';
+const DEFAULT_LOGO_PATH = '/';
 
 function getDefaultToolbarContainer() {
     return document.getElementById(DEFAULT_TOOLBAR_ID);
 }
 
-function buildDefaultToolbar() {
+export function buildDefaultToolbar() {
     return new Toolbar(getDefaultToolbarContainer());
 }
 
@@ -52,7 +55,7 @@ class Toolbar {
             this.loginButton = document.createElement('button');
             this.buttonContainer.appendChild(this.loginButton);
             this.loginButton.textContent = 'Login';
-            this.loginButton.addEventListener('click', () => { location.href = this.loginPath; });
+            this.loginButton.addEventListener('click', () => moveTo(this.loginPath));
         }
 
         this._addStyleClasses();

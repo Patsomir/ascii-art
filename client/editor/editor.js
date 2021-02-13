@@ -1,9 +1,13 @@
+import { AsciiCanvas, AsciiInstruments, AsciiPalette, AsciiSelect, AsciiAnimationFpsManager, AsciiAnimationFrameManager } from './editor-components.js';
+import { FileManager } from '../utils/file-manager.js';
+import { asciiFromImage } from '../utils/ascii-from-image.js';
+
 const IMAGE_CHECKPOINT_KEY = 'ascii-art-image-checkpoint';
 const ANIMATION_CHECKPOINT_KEY = 'ascii-art-animation-checkpoint';
 const ANIMATION_PLAYER_KEY = 'ascii-art-animation-player';
-const PLAYER_DIR = '../player/player.html'
+const PLAYER_DIR = '../player/player.html';
 
-class AsciiImageEditor {
+export class AsciiImageEditor {
     root;
     selectedInstrumentDom;
     selectedCharDom;
@@ -134,7 +138,7 @@ class AsciiImageEditor {
 }
 
 
-class AsciiAnimationEditor extends AsciiImageEditor {
+export class AsciiAnimationEditor extends AsciiImageEditor {
     fpsManagerDom;
     animationOperationsDom;
     frameManagerDom;

@@ -1,4 +1,4 @@
-function asciiFromImage(file, asciiDimensions) {
+export function asciiFromImage(file, asciiDimensions) {
     return new Promise((resolve, reject) => {
         let asciiWidth = asciiDimensions.width;
         let asciiHeight = asciiDimensions.height;
@@ -62,7 +62,6 @@ function validateDimensions(asciiWidth, asciiHeight){
     return validator.getErrors();
 }
 
-
 function genAscii(ctx, imgWidth, imgHeight, asciiWidth, asciiHeight) {
     let asciiArt = "";
 
@@ -112,8 +111,7 @@ function mapColorToAscii(r, g, b) {
     return colors[colors.length - 1]
 }
 
-
-function drawPalette(numberColors, colorWidth = 50, colorHeight = 50) {
+export function drawPalette(numberColors, colorWidth = 50, colorHeight = 50) {
     const step = 255 / numberColors;
     const betweenColors = 5;
 

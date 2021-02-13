@@ -1,5 +1,11 @@
+import { moveTo } from '../utils/navigation.js';
+import { login } from '../utils/auth-service.js';
+import { postJson } from '../utils/http-service.js';
+import { Validator } from '../utils/validation.js';
+import { buildDefaultToolbar } from '../utils/toolbar.js';
+
 const REGISTER_PATH = '/registration.php';
-const LOGIN_SUCCESS_PATH = '/client';
+const LOGIN_SUCCESS_PATH = '/';
 
 const LOGIN_BUTTON_ID = 'login-button';
 const LOGIN_TAB_ID = 'login-option';
@@ -59,7 +65,7 @@ function submitLogin(event) {
     login(username, password)
     .then(success => {
         resultContainer.innerHTML = `<p>Hello, ${success.name}</p>`;
-        location.href = LOGIN_SUCCESS_PATH;
+        moveTo(LOGIN_SUCCESS_PATH);
     })
     .catch(failure => {
         resultContainer.innerHTML = getErrorsHtml(failure.errors);
