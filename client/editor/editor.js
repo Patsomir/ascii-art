@@ -27,11 +27,12 @@ export class AsciiImageEditor {
     static DEFAULT_WIDTH = 80;
     static DEFAULT_HEIGHT = 40;
 
-    constructor(root, width = AsciiImageEditor.DEFAULT_WIDTH, height = AsciiImageEditor.DEFAULT_HEIGHT) {
+    constructor(root, width = AsciiImageEditor.DEFAULT_WIDTH, height = AsciiImageEditor.DEFAULT_HEIGHT, template = '') {
         this._buildDom(root);
         this._addStyleClasses();
 
         this.canvas = new AsciiCanvas(this.canvasDom, width, height);
+        this.canvas.setTemplate(template);
         this.palette = new AsciiPalette(this.paletteDom);
         this.instrumentManager = new AsciiInstruments(this.canvas, this.palette);
         this.instrumentSelector = new AsciiSelect(this.instrumentsDom);
@@ -147,8 +148,8 @@ export class AsciiAnimationEditor extends AsciiImageEditor {
     animationOperations;
     frameManager;
 
-    constructor(root) {
-        super(root);
+    constructor(root, width = AsciiImageEditor.DEFAULT_WIDTH, height = AsciiImageEditor.DEFAULT_HEIGHT, template = '') {
+        super(root, width, height, template);
         this.animationOperationsDom = document.createElement('div');
         this.frameManagerDom = document.createElement('div');
         this.fpsManager = new AsciiAnimationFpsManager(this.animationOperationsDom);
