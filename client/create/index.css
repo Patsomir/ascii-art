@@ -1,0 +1,30 @@
+#heading {
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+}
+
+#container {
+    font-family: 'Courier New', Courier, monospace;
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#options {
+    display: flex;
+    justify-content: space-between;
+}
+
+#options > * {
+    cursor: pointer;
+    user-select: none;
+}
+
+#options > *:hover {
+    color: rgb(100, 100, 100);
+}
+
+#content {
+    display: grid;
+    gap: 10px;
+}

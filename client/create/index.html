@@ -4,10 +4,29 @@
     <meta charset="utf-8" />
     <title>ASCII ART</title>
     <link href="../utils/toolbar.css" rel="stylesheet">
+    <link href="index.css" rel="stylesheet">
     <script src="index.js" type="module"></script>
   </head>
   <body>
     <div id="toolbar"></div>
-    <h1>Ascii Art Create Page</h1>
+    <h1 id="heading">Create Ascii Art</h1>
+    
+    <div id="container">
+      <div id="options">
+        <h2 id="black-option">Blank</h2>
+        <h2 id="image-option">From Image</h2>
+        <h2 id="json-option">From JSON</h2>
+      </div>
+      <div id="content">
+        <input id="width" type="number" placeholder="width"></input>
+        <input id="height" type="number" placeholder="height"></input>
+        <label for="editor-type">Editor Type:</label>
+        <select id="editor-type">
+          <option value="image">Image</option>
+          <option value="animation">Animation</option>
+        </select>
+        <button id="open-button">Open Editor</button>
+      </div>
+    </div>
   </body>
 </html>
