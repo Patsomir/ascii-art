@@ -1,4 +1,4 @@
-class FileManager {
+export class FileManager {
     input;
 
     onSelect;

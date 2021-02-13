@@ -1,7 +1,9 @@
+import { mouseState } from './mouse-state.js';
+
 const SPACE_CHAR = ' ';
 const VISIBLE_ASCII_RANGE = [32, 126];
 
-class AsciiCanvas {
+export class AsciiCanvas {
     root;
     width;
     height;
@@ -106,7 +108,7 @@ class AsciiCanvas {
     }
 }
 
-class AsciiSelect {
+export class AsciiSelect {
     root;
     selected;
 
@@ -174,7 +176,7 @@ class AsciiSelect {
     }
 }
 
-class AsciiPalette extends AsciiSelect {
+export class AsciiPalette extends AsciiSelect {
     constructor(root) {
         super(root);
         for(let charcode = VISIBLE_ASCII_RANGE[0]; charcode <= VISIBLE_ASCII_RANGE[1]; ++charcode) {
@@ -184,7 +186,7 @@ class AsciiPalette extends AsciiSelect {
     }
 }
 
-class AsciiInstruments {
+export class AsciiInstruments {
     canvas;
     palette;
 
@@ -236,7 +238,7 @@ class AsciiInstruments {
     }
 }
 
-class AsciiAnimationFrameManager {
+export class AsciiAnimationFrameManager {
     root;
     canvas;
     
@@ -382,7 +384,7 @@ class AsciiAnimationFrameManager {
     }
 }
 
-class AsciiAnimationFpsManager {
+export class AsciiAnimationFpsManager {
     root;
     label;
     fpsInput;

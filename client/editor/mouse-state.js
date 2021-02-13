@@ -1,4 +1,4 @@
-const mouseState = {
+export const mouseState = {
     isDown: false,
 };
 

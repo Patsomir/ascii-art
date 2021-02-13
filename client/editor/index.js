@@ -1,3 +1,5 @@
+import { AsciiImageEditor, AsciiAnimationEditor } from './editor.js';
+
 const EDITOR_GRID_ID = 'editor-grid';
 
 window.addEventListener('load', () => {
