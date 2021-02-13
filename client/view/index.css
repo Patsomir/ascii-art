@@ -1,0 +1,24 @@
+#heading {
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+}
+
+#catalogue {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 0 5%;
+    gap: 5px;
+}
+
+#catalogue > div {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: whitesmoke;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 1px 3px gray;
+}
+
+#catalogue > div:hover {
+    background-color: lightyellow;
+    cursor: pointer;
+}

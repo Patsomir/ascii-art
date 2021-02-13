@@ -1,3 +1,5 @@
+import { Validator } from './validation.js';
+
 export function asciiFromImage(file, asciiDimensions) {
     return new Promise((resolve, reject) => {
         let asciiWidth = asciiDimensions.width;
