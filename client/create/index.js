@@ -11,7 +11,16 @@ function openEditor() {
     const width = document.getElementById(WIDTH_ID).value;
     const height = document.getElementById(HEIGHT_ID).value;
     const type = document.getElementById(TYPE_ID).value;
-    moveTo(`${EDITOR_PATH}?width=${width}&height=${height}&type=${type}`);
+
+    let path = `${EDITOR_PATH}?type=${type}`;
+    if(width) {
+        path += `&width=${width}`;
+    }
+    if(height) {
+        path += `&height=${height}`;
+    }
+
+    moveTo(path);
 }
 
 window.addEventListener('load', () => {
