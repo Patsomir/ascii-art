@@ -78,4 +78,5 @@ body {
 .toolbar > .page-links > button {
     font-size: 20px;
     padding: 0 10px;
+    user-select: none;
 }
