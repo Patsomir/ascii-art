@@ -52,8 +52,8 @@
 
     function fillFromResult(&$responseData, &$status, $result) {
         if(isset($result['errors'])) {
-            $responseData['errors'] = ['No art found'];
-            $status = 400;
+            $responseData['errors'] = ['Art not found'];
+            $status = 404;
         } else {
             $responseData['result'] = $result['result'];
         }
