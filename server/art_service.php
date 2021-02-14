@@ -38,9 +38,12 @@
 
         public function getArt($id) {
             $query = $this->database->getQuery(
-                'SELECT *
+                'SELECT arts.id, arts.name, arts.content, arts.type,
+                arts.created_at, arts.last_modified, users.name as creator,
+                users.username as username
                 FROM arts
-                WHERE id = ?;'
+                LEFT JOIN users ON arts.user_id=users.id
+                WHERE arts.id = ?;'
             );
 
             $query->execute([$id]);
