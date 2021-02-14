@@ -6,8 +6,8 @@
 #catalogue {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    margin: 0 5%;
-    gap: 5px;
+    margin: 0 10%;
+    gap: 15px;
 }
 
 #catalogue > div {
@@ -21,4 +21,53 @@
 #catalogue > div:hover {
     background-color: lightyellow;
     cursor: pointer;
+}
+
+.entry {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    font-size: 22px;
+    margin-top: 0;
+}
+
+.creator {
+    margin-bottom: 0;
+}
+
+.number-likes {
+    font-size: 22px;
+}
+
+.heart {
+    font-size: 30px;
+    color: rgb(255, 0, 85);
+    margin-left: 5px;
+}
+
+.navigation-container {
+    display: grid;
+    align-items: center;
+    grid-template-columns: auto auto auto;
+    justify-content: space-between;
+    margin: 20px 10%;
+}
+
+.navigation-button {
+    font-size: 20px;
+    padding: 8px 14px;
+    font-weight: bold;
+    border-radius: 50px;
+}
+
+.navigation-button:focus {
+    outline: none;
+}
+
+.page-count {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 18px;
 }
