@@ -5,6 +5,9 @@ const ANIMATION_PLAYER_KEY = 'ascii-art-animation-player';
 const DISPLAY_ROOT_ID = 'display';
 const ID_PARAM = 'id';
 
+const TITLE_ID = 'title';
+const DATE_ID = 'date';
+
 function play(result) {
     const art = JSON.parse(result.content);
     const frames = art.frames;
@@ -22,6 +25,12 @@ function play(result) {
     }
 }
 
+function displayMetadata(result) {
+    console.log(result);
+    document.getElementById(TITLE_ID).textContent = result.name;
+    document.getElementById(DATE_ID).textContent = result.created_at;
+}
+
 window.addEventListener('load', () => {
     buildDefaultToolbar();
 
@@ -30,10 +39,13 @@ window.addEventListener('load', () => {
 
     if(id) {
         getArt(id)
-        .then(response => play(response.result))
+        .then(response => {
+            play(response.result);
+            displayMetadata(response.result);
+        })
         .catch(console.error);
     } else {
-        const stored = getItem(ANIMATION_PLAYER_KEY);
+        const stored = localStorage.getItem(ANIMATION_PLAYER_KEY);
         if(stored) {
             play({
                 content: stored,
