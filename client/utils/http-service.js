@@ -32,3 +32,12 @@ export function postJson(path, data) {
         JSON.stringify(data),
     );
 }
+
+export function deleteJson(path, data) {
+    return sendRequest(
+        path,
+        'DELETE',
+        { 'Content-Type': 'application/json' },
+        JSON.stringify(data),
+    );
+}

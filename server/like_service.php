@@ -36,6 +36,30 @@
             }
         }
 
+        public function unlike($user_id, $art_id) {
+            $errors = array();
+
+            pushIfError($errors, validateInteger($user_id, 'User ID'));
+            pushIfError($errors, validateInteger($art_id, 'Art ID'));
+
+            if(count($errors) > 0) {
+                return $errors;
+            }
+
+            $query = $this->database->getQuery(
+                'DELETE
+                FROM likes
+                WHERE user_id = ? AND art_id = ?;'
+            );
+
+            if($query->execute([$user_id, $art_id])){
+                return 'Success';
+            } else {
+                array_push($errors, 'Invalid request');
+                return $errors;
+            }
+        }
+
         public function getLikesInfo($user_id, $art_id) {
             $likesQuery = $this->database->getQuery(
                 'SELECT COUNT(*)

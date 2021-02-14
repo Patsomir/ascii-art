@@ -25,3 +25,34 @@
 .error {
     color: red;
 }
+
+#likes {
+    margin: 20px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+#like-button {
+    width: 2em;
+    height: 2em;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 50px;
+}
+
+#like-button:focus {
+    outline: 0;
+}
+
+#like-count {
+    font-weight: bold;
+    font-size: 30px;
+    padding-right: 10px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.user-liked {
+    color: gold;
+    border-color: gold;
+}
