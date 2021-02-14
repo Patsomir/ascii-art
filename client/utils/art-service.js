@@ -1,4 +1,4 @@
-import { postJson } from './http-service.js';
+import { postJson, get } from './http-service.js';
 
 export function postArt(name, content, type) {
     const request = {
@@ -8,4 +8,8 @@ export function postArt(name, content, type) {
     };
 
     return postJson("/arts.php", request);
+}
+
+export function getArt(id) {
+    return get(`/arts.php?id=${id}`);
 }

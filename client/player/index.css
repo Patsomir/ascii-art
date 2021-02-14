@@ -1,4 +1,7 @@
-#animation {
+#display {
     white-space: pre;
     font-family: 'Courier New';
+    text-align: center;
+    width: 100%;
+    overflow: auto;
 }

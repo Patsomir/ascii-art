@@ -6,7 +6,7 @@ import { open } from '../utils/navigation.js';
 const IMAGE_CHECKPOINT_KEY = 'ascii-art-image-checkpoint';
 const ANIMATION_CHECKPOINT_KEY = 'ascii-art-animation-checkpoint';
 const ANIMATION_PLAYER_KEY = 'ascii-art-animation-player';
-const PLAYER_DIR = '../player/player.html';
+const PLAYER_DIR = '../player';
 const UPLOAD_DIR = '/upload';
 
 export const UPLOAD_KEY = 'ascii-art-upload-key';
