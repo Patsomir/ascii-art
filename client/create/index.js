@@ -113,6 +113,7 @@ function resetInputState() {
 
 window.addEventListener('load', () => {
     buildDefaultToolbar();
+    resetInputState();
     document.getElementById(OPEN_BUTTON_ID).addEventListener('click', openEditor);
     document.getElementById(UPLOAD_IMAGE_BUTTON_ID).addEventListener('change', displayAsciiFromImage);
     document.getElementById(UPLOAD_TEXT_BUTTON_ID).addEventListener('change', displayAsciiFromText);
