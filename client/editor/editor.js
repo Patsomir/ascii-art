@@ -1,11 +1,16 @@
 import { AsciiCanvas, AsciiInstruments, AsciiPalette, AsciiSelect, AsciiAnimationFpsManager, AsciiAnimationFrameManager } from './editor-components.js';
 import { FileManager } from '../utils/file-manager.js';
 import { asciiFromImage } from '../utils/ascii-from-image.js';
+import { open } from '../utils/navigation.js';
 
 const IMAGE_CHECKPOINT_KEY = 'ascii-art-image-checkpoint';
 const ANIMATION_CHECKPOINT_KEY = 'ascii-art-animation-checkpoint';
 const ANIMATION_PLAYER_KEY = 'ascii-art-animation-player';
 const PLAYER_DIR = '../player/player.html';
+const UPLOAD_DIR = '';
+
+export const UPLOAD_KEY = 'ascii-art-upload-key';
+export const UPLOAD_ASCII_ART_TYPE = 'ascii-art-type-key';
 
 export class AsciiImageEditor {
     root;
@@ -98,6 +103,12 @@ export class AsciiImageEditor {
             }
             this.imageFileManager.openPrompt();
         });
+        this.operationsSelector.pushOption({ label: '\u2B06', tooltip: 'Upload' }, () => {
+            localStorage.setItem(UPLOAD_KEY, this.toJson());
+            const urlParams = new URLSearchParams(window.location.search);
+            localStorage.setItem(UPLOAD_ASCII_ART_TYPE, urlParams.get('type'));
+            open(UPLOAD_DIR);
+        });
         this.operationsSelector.pushOption({ label: '\u274C', tooltip: 'Delete' }, () => {
             localStorage.removeItem(IMAGE_CHECKPOINT_KEY);
             console.log('Deleted image and local storage');
@@ -135,6 +146,15 @@ export class AsciiImageEditor {
         this.instrumentsDom.classList.add(AsciiImageEditor.INSTRUMENTS_CLASS);
         this.operationsDom.classList.add(AsciiImageEditor.OPERATIONS_CLASS);
         this.canvasDom.classList.add(AsciiImageEditor.CANVAS_CLASS);
+    }
+
+    toJson() {
+        return JSON.stringify({
+            frames: [this.canvas.toString()],
+            fps: 0,
+            width: this.canvas.width,
+            height: this.canvas.height,
+        });
     }
 }
 
@@ -182,7 +202,7 @@ export class AsciiAnimationEditor extends AsciiImageEditor {
         });
         this.animationOperations.pushOption({ label: 'Set Checkpoint \uD83D\uDEA9', container: 'button' }, () => {
             this.frameManager._overrideFrame();
-            localStorage.setItem(ANIMATION_CHECKPOINT_KEY, this.getAnimationJson());
+            localStorage.setItem(ANIMATION_CHECKPOINT_KEY, this.toJson());
             console.log('Animation saved to local storage');
         });
         this.animationOperations.pushOption({ label: 'Restore Checkpoint \u21BA', container: 'button'}, () => {
@@ -196,13 +216,18 @@ export class AsciiAnimationEditor extends AsciiImageEditor {
         });
         this.animationOperations.pushOption({ label: 'Play \u25B6', container: 'button'}, () => {
             this.frameManager._overrideFrame();
-            localStorage.setItem(ANIMATION_PLAYER_KEY, this.getAnimationJson());
+            localStorage.setItem(ANIMATION_PLAYER_KEY, this.toJson());
             window.open(PLAYER_DIR);
         });
     }
 
-    getAnimationJson() {
-        return JSON.stringify({ frames: this.frameManager.frames, fps: this.fpsManager.getFps() });
+    toJson() {
+        return JSON.stringify({
+            frames: this.frameManager.frames,
+            fps: this.fpsManager.getFps(),
+            width: this.canvas.width,
+            height: this.canvas.height,
+        });
     }
 
     loadAnimationJson(json) {
