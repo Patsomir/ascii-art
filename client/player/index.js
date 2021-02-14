@@ -12,6 +12,7 @@ const DATE_ID = 'date';
 const LIKES_ID = 'likes';
 const LIKE_COUNT_ID = 'like-count';
 const LIKE_BUTTON_ID = 'like-button';
+const CREATOR_ID = 'creator';
 
 const ERROR_CLASS = 'error';
 const USER_LIKED_CLASS = 'user-liked';
@@ -35,13 +36,14 @@ function play(result) {
 
 function displayMetadata(result) {
     document.getElementById(TITLE_ID).textContent = result.name;
+    document.getElementById(CREATOR_ID).textContent = `by ${result.creator} (${result.username})`;
     document.getElementById(DATE_ID).textContent = result.created_at;
 }
 
 function displayErrors(errors) {
     const errorRoot = document.getElementById(DISPLAY_ROOT_ID);
     for(const error of errors) {
-        errorRoot.innerHTML += `<p class=${ERROR_CLASS}>${error}</p>`;
+        errorRoot.innerHTML += `<p class="${ERROR_CLASS}">${error}</p>`;
     }
 }
 
