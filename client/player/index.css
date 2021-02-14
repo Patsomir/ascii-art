@@ -4,4 +4,20 @@
     text-align: center;
     width: 100%;
     overflow: auto;
+    
+}
+
+#title {
+    border-top: 2px solid whitesmoke;
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0px 20px;
+    padding-top: 10px;
+}
+
+#date {
+    border-bottom: 2px solid whitesmoke;
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0 20px;
+    padding-bottom: 10px;
+    color: gray;
 }

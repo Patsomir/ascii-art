@@ -26,7 +26,6 @@ function play(result) {
 }
 
 function displayMetadata(result) {
-    console.log(result);
     document.getElementById(TITLE_ID).textContent = result.name;
     document.getElementById(DATE_ID).textContent = result.created_at;
 }
