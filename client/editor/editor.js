@@ -7,7 +7,7 @@ const IMAGE_CHECKPOINT_KEY = 'ascii-art-image-checkpoint';
 const ANIMATION_CHECKPOINT_KEY = 'ascii-art-animation-checkpoint';
 const ANIMATION_PLAYER_KEY = 'ascii-art-animation-player';
 const PLAYER_DIR = '../player/player.html';
-const UPLOAD_DIR = '';
+const UPLOAD_DIR = '/upload';
 
 export const UPLOAD_KEY = 'ascii-art-upload-key';
 export const UPLOAD_ASCII_ART_TYPE = 'ascii-art-type-key';
