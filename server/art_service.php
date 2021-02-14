@@ -90,7 +90,20 @@
             $arts = $query->fetchAll(PDO::FETCH_ASSOC);
 
             if ($arts !== false) {
-                $result['result'] = $arts;
+                $artCountQuery = $this->database->getQuery(
+                    'SELECT COUNT(*)
+                    FROM arts;'
+                );
+                $artCountQuery->execute();
+                $numberArts = $artCountQuery->fetch();
+
+                if ($numberArts !== false) {
+                    $result['result']['arts'] = $arts;
+                    $result['result']['count'] = $numberArts[0];
+                }
+                else {
+                    $result['errors'] = ["Query error"];
+                }
             }
             else {
                 $result['errors'] = ["Query error"];
