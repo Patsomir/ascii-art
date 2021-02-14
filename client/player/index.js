@@ -8,6 +8,8 @@ const ID_PARAM = 'id';
 const TITLE_ID = 'title';
 const DATE_ID = 'date';
 
+const ERROR_CLASS = 'error';
+
 function play(result) {
     const art = JSON.parse(result.content);
     const frames = art.frames;
@@ -30,6 +32,13 @@ function displayMetadata(result) {
     document.getElementById(DATE_ID).textContent = result.created_at;
 }
 
+function displayErrors(errors) {
+    const errorRoot = document.getElementById(DISPLAY_ROOT_ID);
+    for(const error of errors) {
+        errorRoot.innerHTML += `<p class=${ERROR_CLASS}>${error}</p>`;
+    }
+}
+
 window.addEventListener('load', () => {
     buildDefaultToolbar();
 
@@ -42,7 +51,7 @@ window.addEventListener('load', () => {
             play(response.result);
             displayMetadata(response.result);
         })
-        .catch(console.error);
+        .catch(response => displayErrors(response.errors));
     } else {
         const stored = localStorage.getItem(ANIMATION_PLAYER_KEY);
         if(stored) {
@@ -51,7 +60,7 @@ window.addEventListener('load', () => {
                 type: 'animation',
             });
         } else {
-            console.error('No stored art');
+            displayErrors(['No stored art']);
         }   
     }
 });
