@@ -1,6 +1,6 @@
 <?php
     include_once 'database.php';
-    include 'validation.php';
+    include_once 'validation.php';
 
     class UserService {
         private $database;
