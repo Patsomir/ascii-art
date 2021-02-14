@@ -1,7 +1,11 @@
+import { buildDefaultToolbar } from '../utils/toolbar.js';
+
 const ANIMATION_PLAYER_KEY = 'ascii-art-animation-player';
 const ANIMATION_ROOT_ID = 'animation';
 
 window.addEventListener('load', () => {
+    buildDefaultToolbar();
+
     const { frames, fps } = JSON.parse(localStorage.getItem(ANIMATION_PLAYER_KEY));
     let currentFrame = 0;
     totalFrames = frames.length;
