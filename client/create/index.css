@@ -33,6 +33,10 @@
     display: none;
 }
 
+#upload-text-button {
+    display: none;
+}
+
 #art-container {
     display: none;
     font-family: 'Courier New', Courier, monospace;

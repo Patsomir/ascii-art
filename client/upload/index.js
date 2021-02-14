@@ -2,8 +2,10 @@ import { buildDefaultToolbar } from '../utils/toolbar.js';
 import { moveTo } from '../utils/navigation.js';
 import { postArt } from '../utils/art-service.js'
 import { UPLOAD_KEY, UPLOAD_ASCII_ART_TYPE } from "../editor/editor.js"
+import { getCurrentUser } from '../utils/auth-service.js';
 
 const HOME_PAGE = '/';
+const LOGIN_PATH = '/login';
 
 const CONTENT_ID = 'content';
 const NAME_ID = 'name';
@@ -71,6 +73,10 @@ function handleErrors(errors) {
 
     let content = document.getElementById(CONTENT_ID);
     content.appendChild(errorMessage);
+}
+
+if(!getCurrentUser()) {
+    moveTo(LOGIN_PATH);
 }
 
 window.addEventListener('load', () => {

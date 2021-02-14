@@ -71,3 +71,8 @@
     font-family: 'Courier New', Courier, monospace;
     font-size: 18px;
 }
+
+.likes {
+    display: flex;
+    align-items: center;
+}
