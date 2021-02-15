@@ -9,4 +9,9 @@
     font-size: 50px;
     font-family: 'Courier New', Courier, monospace;
     pointer-events: none;
+    color: white;
+}
+
+body {
+    background-color: rgb(119, 53, 139);
 }

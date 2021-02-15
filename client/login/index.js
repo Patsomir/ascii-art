@@ -74,7 +74,7 @@ function submitLogin(event) {
 
 function getErrorsHtml(errors) {
     let result = '';
-    for(error of errors) {
+    for(const error of errors) {
         result += `<p class="error">${error}</p>`;
     }
     return result;

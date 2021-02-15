@@ -10,6 +10,8 @@
 form {
     display: grid;
     gap: 10px;
+    background-color: white;
+    padding: 30px;
 }
 
 form > * {
@@ -29,16 +31,31 @@ form > * {
 #options > * {
     cursor: pointer;
     user-select: none;
+    color: white;
 }
 
 #options > *:hover {
-    color: rgb(100, 100, 100);
+    color: rgb(177, 177, 177);
 }
 
 #register-option {
     text-align: right;
 }
 
+#feedback {
+    background-color: white;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+#feedback > p {
+    margin-top: 0;
+}
+
 .error {
     color: red;
+}
+
+body {
+    background-color: rgb(119, 53, 139);
 }

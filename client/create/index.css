@@ -1,6 +1,7 @@
 #heading {
     font-family: 'Courier New', Courier, monospace;
     text-align: center;
+    color: white;
 }
 
 #container {
@@ -8,6 +9,8 @@
     width: 500px;
     margin-left: auto;
     margin-right: auto;
+    background-color: white;
+    padding: 10px 30px 30px 30px;
 }
 
 #options {
@@ -48,5 +51,9 @@
 
 #inner-container {
     display: none;
-    border: 1px solid black;
+    background-color: white;
+}
+
+body {
+    background-color: rgb(119, 53, 139);
 }

@@ -1,6 +1,7 @@
 #heading {
     font-family: 'Courier New', Courier, monospace;
     text-align: center;
+    color: white;
 }
 
 #catalogue {
@@ -70,9 +71,14 @@
 .page-count {
     font-family: 'Courier New', Courier, monospace;
     font-size: 18px;
+    color: white;
 }
 
 .likes {
     display: flex;
     align-items: center;
+}
+
+body {
+    background-color: rgb(119, 53, 139);
 }
