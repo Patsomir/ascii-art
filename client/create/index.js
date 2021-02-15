@@ -46,12 +46,13 @@ function displayAsciiFromImage(event){
             const height = document.getElementById(HEIGHT_ID);
 
             if(!width.value && !height.value){
-                height.value = 40;
+                width.value = 80;
             }
            
             asciiFromImage(file, { width: parseInt(width.value), height: parseInt(height.value)})
             .then(asciiArt => {
                 width.value = asciiArt.indexOf('\n');
+                height.value =  asciiArt.split(/\r\n|\r|\n/).length - 1;
                 loadAsciiArt(asciiArt);            
                 localStorage.setItem(INIT_TEMPLATE_KEY, asciiArt);
             })
