@@ -12,8 +12,8 @@ const ANIMATION_TYPE_VALUE = 'animation';
 
 window.addEventListener('load', () => {
     const urlParams = new URLSearchParams(window.location.search);
-    const width = urlParams.get(WIDTH_PARAM) ?? DEFAULT_WIDTH;
-    const height = urlParams.get(HEIGHT_PARAM) ?? DEFAULT_HEIGHT;
+    const width = parseInt(urlParams.get(WIDTH_PARAM) ?? DEFAULT_WIDTH);
+    const height = parseInt(urlParams.get(HEIGHT_PARAM) ?? DEFAULT_HEIGHT);
     const type = urlParams.get(TYPE_PARAM) ?? ANIMATION_TYPE_VALUE;
     const root = document.getElementById(EDITOR_GRID_ID);
     const template = localStorage.getItem(INIT_TEMPLATE_KEY) ?? '';
